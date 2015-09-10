@@ -26,9 +26,9 @@ public class JdbcDaoImpl {
 			Class.forName(DRIVER).newInstance();
 
 			conn = DriverManager.getConnection(DB_URL, username, password);
-			
+
 			System.out.println("Connected to database on port 3306");
-			
+
 			PreparedStatement preparedSt = conn
 					.prepareStatement("SELECT * FROM circle where id = ?");
 			preparedSt.setInt(1, circleId);
@@ -42,17 +42,8 @@ public class JdbcDaoImpl {
 
 			resultSet.close();
 			preparedSt.close();
-			
-			
-			return circle;
 
-			/*
-			 * String temp = "First Circle"; PreparedStatement prepStmt = conn
-			 * .prepareStatement("INSERT INTO circle VALUES (?, ?);");
-			 * prepStmt.setInt(1, 1); prepStmt.setString(2, temp);
-			 * prepStmt.execute(); prepStmt.close();
-			 */
-			
+			return circle;
 
 		} catch (Exception e) {
 			throw new RuntimeException(e);
