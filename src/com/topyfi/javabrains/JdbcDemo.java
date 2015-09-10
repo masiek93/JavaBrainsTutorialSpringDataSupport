@@ -9,7 +9,8 @@ import com.topyfi.javabrains.model.Circle;
 public class JdbcDemo {
 
 	public static void main(String[] args) {
-		JdbcDaoImpl.connect();
+		Circle circle = new JdbcDaoImpl().getCircle(1);
+		System.out.println(circle.getName());
 
 	}
 
