@@ -7,25 +7,31 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.topyfi.javabrains.model.Circle;
 
 @Component
 public class JdbcDaoImpl {
-	public static final String DRIVER = "com.mysql.jdbc.Driver";
+/*	public static final String DRIVER = "com.mysql.jdbc.Driver";
 	public static final String DB_URL = "jdbc:mysql://localhost:3306/javabase";
 
 	static String username = "java";
-	static String password = "password";
+	static String password = "password";*/
+
+	@Autowired
+	private DataSource dataSource;
 
 	public Circle getCircle(int circleId) {
 		Connection conn = null;
 
 		try {
-			Class.forName(DRIVER).newInstance();
+			
 
-			conn = DriverManager.getConnection(DB_URL, username, password);
+			conn = dataSource.getConnection();
 
 			System.out.println("Connected to database on port 3306");
 
@@ -56,4 +62,13 @@ public class JdbcDaoImpl {
 		}
 
 	}
+
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
+
 }
