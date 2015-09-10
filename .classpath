@@ -3,5 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Apache Tomcat v8.0"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Spring4_2_1"/>
+	<classpathentry kind="lib" path="C:/Users/Masiek/mysql_connector-java-5_1_36/mysql-connector-java-5.1.36.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -6,23 +6,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.stereotype.Component;
+
 import com.topyfi.javabrains.model.Circle;
 
+@Component
 public class JdbcDaoImpl {
+	public static final String DRIVER = "org.sqlite.JDBC";
+	public static final String DB_URL = "jdbc:sqlite://localhost:8090/database.db";
 
-	public Circle getCircle(int circleId) {
+	public static void connect() {
 		Connection conn = null;
 
 		try {
-			String driver = "org.apache.tomcat.jdbc.pool"; // i dont know which
-															// driver should i
-															// use
-
-			Class.forName(driver).newInstance();
+			Class.forName(DRIVER).newInstance();
 
 			conn = DriverManager
-					.getConnection("jdbc:tomcat://localhost:8090//db");
-			PreparedStatement preparedSt = conn
+					.getConnection(DB_URL);
+/*			PreparedStatement preparedSt = conn
 					.prepareStatement("SELECT * FROM circle where id = ?");
 			preparedSt.setInt(1, circleId);
 
@@ -34,18 +35,15 @@ public class JdbcDaoImpl {
 			resultSet.close();
 			preparedSt.close();
 
-			return circle;
+			return circle;*/
+			System.out.println("Stworzylem baze danych");
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 		
-		finally{
-			try{
-				conn.close();
-			} catch(SQLException e){}
+		try{
+			conn.close();
+		} catch(SQLException e){}
 			
-			
-		}
-		
 	}
 }
