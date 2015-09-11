@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -72,7 +73,10 @@ public class JdbcDaoImpl {
 		return jdbcTemplate.queryForObject(sql, new Object[] {circleId}, new CircleMapper());
 	}
 	
-	
+	public List<Circle> getAllCircles(){
+		String sql="SELECT * FROM CIRCLE";
+		return jdbcTemplate.query(sql, new CircleMapper());
+	}
 
 	private static final class CircleMapper implements RowMapper<Circle> {
 
