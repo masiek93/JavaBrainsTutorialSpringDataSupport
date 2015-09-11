@@ -67,18 +67,19 @@ public class JdbcDaoImpl {
 	}
 	
 	public int getCircleCount(){
-		String sql = "SELECT COUNT(*) FROM CIRCLE";
-		jdbcTemplate.setDataSource(getDataSource());
-		jdbcTemplate.queryForObject(sql, Integer);
 		
+		String sql = "SELECT COUNT(*) FROM CIRCLE";
+		/*jdbcTemplate.setDataSource(getDataSource());*/
+		return jdbcTemplate.queryForObject(sql, Integer.class);
 	}
 
 	public DataSource getDataSource() {
 		return dataSource;
 	}
-
+	@Autowired
 	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
+		/*this.dataSource = dataSource;*/
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
 	public JdbcTemplate getJdbcTemplate() {
