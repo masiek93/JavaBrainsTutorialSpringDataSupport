@@ -17,10 +17,10 @@ public class JdbcDemo {
 		JdbcDaoImpl dao = context.getBean("jdbcDaoImpl", JdbcDaoImpl.class);
 		
 		//System.out.println(dao.getCircleName(1));
-		//dao.insertCircle(new Circle(4,"Fourth Circle"));
-		System.out.println(dao.getCircleById(4).getName());
+		//dao.insertCircleNamed(new Circle(5,"Fifth Circle"));
+		System.out.println(dao.getCircleById(5).getName());
 		System.out.println(dao.getAllCircles().size());
-		dao.createTriangleTable();
+		//dao.createTriangleTable();
 	}
 
 }
