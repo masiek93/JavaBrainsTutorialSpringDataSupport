@@ -22,7 +22,25 @@ public class JdbcDaoImpl {
 
 	private DataSource dataSource;
 
-	private JdbcTemplate jdbcTemplate = new JdbcTemplate();
+	private JdbcTemplate jdbcTemplate;
+	
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+
+	@Autowired
+	public void setDataSource(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
+	}
+
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+	
 	public int getCircleCount() {
 
 		String sql = "SELECT COUNT(*) FROM CIRCLE";
@@ -33,7 +51,6 @@ public class JdbcDaoImpl {
 		String sql = "SELECT NAME FROM CIRCLE WHERE ID = ?";
 		return jdbcTemplate.queryForObject(sql, new Object[] { circleId },
 				String.class);
-
 	}
 
 	public Circle getCircleById(int circleId){
@@ -58,21 +75,14 @@ public class JdbcDaoImpl {
 
 	}
 
-	public DataSource getDataSource() {
-		return dataSource;
+	public void insertCircle(Circle circle){
+		String sql = "INSERT INTO CIRCLE (ID, NAME) VALUES (?, ?)";
+		jdbcTemplate.update(sql, new Object[] {circle.getId(),  circle.getName()});
 	}
 
-	@Autowired
-	public void setDataSource(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
-	}
-
-	public JdbcTemplate getJdbcTemplate() {
-		return jdbcTemplate;
-	}
-
-	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
+	public void createTriangleTable(){
+		String sql ="CREATE TABLE TRIANGLE (ID INTEGER, NAME VARCHAR(50))";
+		jdbcTemplate.execute(sql);
 	}
 
 }
