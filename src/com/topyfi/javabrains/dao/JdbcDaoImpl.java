@@ -17,18 +17,12 @@ import com.topyfi.javabrains.model.Circle;
 
 @Component
 public class JdbcDaoImpl {
-/*	public static final String DRIVER = "com.mysql.jdbc.Driver";
-	public static final String DB_URL = "jdbc:mysql://localhost:3306/javabase";
-
-	static String username = "java";
-	static String password = "password";*/
-
-	@Autowired
+	
 	private DataSource dataSource;
 	
 	private JdbcTemplate jdbcTemplate = new JdbcTemplate();
 
-	public Circle getCircle(int circleId) {
+/*	public Circle getCircle(int circleId) {
 		Connection conn = null;
 
 		try {
@@ -64,12 +58,11 @@ public class JdbcDaoImpl {
 
 		}
 
-	}
+	}*/
 	
 	public int getCircleCount(){
 		
 		String sql = "SELECT COUNT(*) FROM CIRCLE";
-		/*jdbcTemplate.setDataSource(getDataSource());*/
 		return jdbcTemplate.queryForObject(sql, Integer.class);
 	}
 
@@ -78,7 +71,6 @@ public class JdbcDaoImpl {
 	}
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
-		/*this.dataSource = dataSource;*/
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
