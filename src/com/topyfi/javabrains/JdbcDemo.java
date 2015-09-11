@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.topyfi.javabrains.dao.JdbcDaoImpl;
+import com.topyfi.javabrains.dao.SimpleJdbcDaoImpl;
 import com.topyfi.javabrains.model.Circle;
 
 public class JdbcDemo {
@@ -14,13 +15,15 @@ public class JdbcDemo {
 	public static void main(String[] args) {
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-		JdbcDaoImpl dao = context.getBean("jdbcDaoImpl", JdbcDaoImpl.class);
-		
+		//JdbcDaoImpl dao = context.getBean("jdbcDaoImpl", JdbcDaoImpl.class);
+		SimpleJdbcDaoImpl dao = context.getBean("simpleJdbcDaoImpl", SimpleJdbcDaoImpl.class);
 		//System.out.println(dao.getCircleName(1));
 		//dao.insertCircleNamed(new Circle(5,"Fifth Circle"));
-		System.out.println(dao.getCircleById(5).getName());
-		System.out.println(dao.getAllCircles().size());
+		//System.out.println(dao.getCircleById(5).getName());
+		//System.out.println(dao.getAllCircles().size());
 		//dao.createTriangleTable();
+		
+		System.out.println(dao.getCircleCount());
 	}
 
 }
