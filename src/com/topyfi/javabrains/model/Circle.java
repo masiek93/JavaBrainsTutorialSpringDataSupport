@@ -25,4 +25,7 @@ public class Circle {
 		setName(name);
 	}
 
+	public Circle() {
+	}
+
 }
